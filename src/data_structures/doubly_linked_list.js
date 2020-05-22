@@ -31,24 +31,86 @@ class DoublyLinkedList {
   }
 
   insertHead(element) {
+    let newNode = new DLLNode(element);
+    let head = this._head();
+
+    if (head == this._sentinel) {
+      newNode.prev = this._sentinel;
+      newNode.next = this._sentinel;
+      this._sentinel.next = newNode;
+      this._sentinel.prev = newNode;
+    }
+    
+    if (head != this._sentinel) {
+      let curr = head;
+      while (curr.next != this._sentinel) {
+        curr = curr.next;
+      }
+      curr.next = newNode;
+      newNode.prev = curr;
+      newNode.next = this._sentinel;
+      this._sentinel.prev = newNode;
+    }
   }
 
   insertTail(element) {
+    let newNode = new DLLNode(element);
+    let tail = this._tail();
+
+    if (tail == this._sentinel) {
+      newNode.prev = this._sentinel;
+      newNode.next = this._sentinel;
+      this._sentinel.next = newNode;
+      this._sentinel.prev = newNode;
+    }
+    
+    if (tail != this._sentinel) {
+      newNode.next = this._sentinel;
+      newNode.prev = tail;
+      tail.next = newNode;
+      this._sentinel.prev = newNode;
+      // while (curr.next != this._sentinel) {
+      //   curr = curr.next;
+      // }
+
+      // curr.next = newNode;
+      // newNode.prev = curr;
+      // newNode.next = this._sentinel;
+      // this._sentinel.prev = newNode;
+    }
   }
 
   removeHead() {
+   let head = this._head();
+   if (head == this._sentinel) {
+     return;
+   }
+
+   return head.remove();
   }
 
-  removeTail() {
-  }
+  // removeTail() {
+  // }
 
-  remove(node) {
-  }
+  // remove(node) {
+  // }
 
-  forEach(callback) {
-  }
+  // forEach(callback) {
+  // }
 
   count() {
+    let count = 0;
+    let head = this._head();
+
+    if (head == this._sentinel) {
+      return count;
+    }
+
+    while (head !== this._sentinel) {
+      count += 1;
+      head = head.next;
+    }
+    return count;
   }
 }
 

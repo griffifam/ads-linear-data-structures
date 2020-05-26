@@ -63,7 +63,7 @@ describe(DoublyLinkedList, () => {
       });
     });
 
-    xit('yields elements in reverse head-insertion order', () => {
+    it('yields elements in reverse head-insertion order', () => {
       const elements = ['linked', 'list', 'elements'];
       elements.forEach(el => dll.insertHead(el));
 
@@ -72,7 +72,7 @@ describe(DoublyLinkedList, () => {
       });
     });
 
-    xit('yields head-inserted elements before tail-inserted elements', () => {
+    it('yields head-inserted elements before tail-inserted elements', () => {
       const expectedOrder = fillMixed();
 
       expectedOrder.forEach(el => {
@@ -80,7 +80,7 @@ describe(DoublyLinkedList, () => {
       });
     });
 
-   xit('decreases count by 1', () => {
+   it('decreases count by 1', () => {
       const elements = ['linked', 'list', 'elements'];
       elements.forEach(el => dll.insertTail(el));
 
@@ -92,13 +92,13 @@ describe(DoublyLinkedList, () => {
       });
     });
 
-    xit('yields undefined and does not decrease count when run on an empty list', () => {
+    it('yields undefined and does not decrease count when run on an empty list', () => {
       expect(dll.count()).toBe(0);
       expect(dll.removeHead()).toBe(undefined);
       expect(dll.count()).toBe(0);
     });
 
-    xit('yields undefined and does not decrease count when all elements have been removed', () => {
+    it('yields undefined and does not decrease count when all elements have been removed', () => {
       const elements = ['linked', 'list', 'elements'];
       elements.forEach(el => dll.insertTail(el));
       elements.forEach(() => dll.removeHead());
@@ -110,7 +110,7 @@ describe(DoublyLinkedList, () => {
   });
 
   describe('removeTail', () => {
-    xit('yields elements in Head-insertion order', () => {
+    it('yields elements in Head-insertion order', () => {
       const elements = ['linked', 'list', 'elements'];
       elements.forEach(el => dll.insertHead(el));
 
@@ -119,7 +119,7 @@ describe(DoublyLinkedList, () => {
       });
     });
 
-    xit('yields elements in reverse Tail-insertion order', () => {
+    it('yields elements in reverse Tail-insertion order', () => {
       const elements = ['linked', 'list', 'elements'];
       elements.forEach(el => dll.insertTail(el));
 
@@ -128,7 +128,7 @@ describe(DoublyLinkedList, () => {
       });
     });
 
-    xit('yields tail-inserted elements before head-inserted elements', () => {
+    it('yields tail-inserted elements before head-inserted elements', () => {
       const expectedOrder = fillMixed().reverse();
 
       expectedOrder.forEach(el => {
@@ -136,7 +136,7 @@ describe(DoublyLinkedList, () => {
       });
     });
 
-    xit('decreases count by 1', () => {
+    it('decreases count by 1', () => {
       const elements = ['linked', 'list', 'elements'];
       elements.forEach(el => dll.insertHead(el));
 
@@ -148,13 +148,13 @@ describe(DoublyLinkedList, () => {
       });
     });
 
-    xit('yields undefined and does not decrease count when run on an empty list', () => {
+    it('yields undefined and does not decrease count when run on an empty list', () => {
       expect(dll.count()).toBe(0);
       expect(dll.removeTail()).toBe(undefined);
       expect(dll.count()).toBe(0);
     });
 
-    xit('yields undefined and does not decrease count when all elements have been removed', () => {
+    it('yields undefined and does not decrease count when all elements have been removed', () => {
       const elements = ['linked', 'list', 'elements'];
       elements.forEach(el => dll.insertHead(el));
       elements.forEach(() => dll.removeTail());
@@ -166,14 +166,14 @@ describe(DoublyLinkedList, () => {
   });
 
   describe('forEach', () => {
-    xit('runs the callback 0 times on an empty list', () => {
+    it('runs the callback 0 times on an empty list', () => {
       const cb = jest.fn();
       dll.forEach(cb);
 
       expect(cb.mock.calls.length).toBe(0);
     });
 
-    xit('provides element, index and ll as cb args', () => {
+    it('provides element, index and ll as cb args', () => {
       const element = 'test';
       dll.insertHead(element);
 
@@ -186,7 +186,7 @@ describe(DoublyLinkedList, () => {
       expect(cb.mock.calls[0][2]).toBe(dll);
     });
 
-    xit('iterates elements in tail-insert-order', () => {
+    it('iterates elements in tail-insert-order', () => {
       const elements = ['linked', 'list', 'elements'];
       elements.forEach(el => dll.insertTail(el));
 
@@ -202,7 +202,7 @@ describe(DoublyLinkedList, () => {
       });
     });
 
-    xit('iterates elements in reverse head-insert order', () => {
+    it('iterates elements in reverse head-insert order', () => {
       const elements = ['linked', 'list', 'elements'];
       elements.forEach(el => dll.insertHead(el));
 
@@ -218,7 +218,7 @@ describe(DoublyLinkedList, () => {
       });
     });
 
-    xit('iterates all head inserts before all tail inserts', () => {
+    it('iterates all head inserts before all tail inserts', () => {
       const expectedOrder = fillMixed();
 
       const cb = jest.fn();
@@ -235,7 +235,7 @@ describe(DoublyLinkedList, () => {
   });
 
   describe('remove', () => {
-    xit('decreases count by 1', () => {
+    it('decreases count by 1', () => {
       const elements = ['linked', 'list', 'elements'];
       const tickets = [];
       elements.forEach(el => tickets.push(dll.insertHead(el)));
@@ -248,7 +248,7 @@ describe(DoublyLinkedList, () => {
       })
     });
 
-    xit('will not yield a removed element when calling removeHead', () => {
+    it('will not yield a removed element when calling removeHead', () => {
       const elements = ['linked', 'removed', 'elements'];
       const tickets = [];
       elements.forEach(el => tickets.push(dll.insertHead(el)));
@@ -259,7 +259,7 @@ describe(DoublyLinkedList, () => {
       expect(dll.removeHead()).toBe('linked');
     });
 
-    xit('will not yield a removed element when calling removeTail', () => {
+    it('will not yield a removed element when calling removeTail', () => {
       const elements = ['linked', 'removed', 'elements'];
       const tickets = [];
       elements.forEach(el => tickets.push(dll.insertHead(el)));
@@ -270,7 +270,7 @@ describe(DoublyLinkedList, () => {
       expect(dll.removeTail()).toBe('elements');
     });
 
-    xit('will not yield a removed element during iteration', () => {
+    it('will not yield a removed element during iteration', () => {
       const elements = ['linked', 'removed', 'elements'];
       const tickets = [];
       elements.forEach(el => tickets.push(dll.insertHead(el)));
@@ -284,7 +284,7 @@ describe(DoublyLinkedList, () => {
       expect(cb.mock.calls[1][0]).toBe('linked');
     });
 
-    xit('does nothing for an invalid node', () => {
+    it('does nothing for an invalid node', () => {
       const elements = ['linked', 'list', 'elements'];
       const tickets = [];
       elements.forEach(el => tickets.push(dll.insertHead(el)));
@@ -299,7 +299,7 @@ describe(DoublyLinkedList, () => {
       expect(cb.mock.calls[2][0]).toBe('linked');
     });
 
-    xit('does nothing for a node that has already been removed', () => {
+    it('does nothing for a node that has already been removed', () => {
       const elements = ['linked', 'removed', 'elements'];
       const tickets = [];
       elements.forEach(el => tickets.push(dll.insertHead(el)));
@@ -314,7 +314,7 @@ describe(DoublyLinkedList, () => {
       expect(cb.mock.calls[1][0]).toBe('linked');
     });
 
-    xit('does nothing for the sentinel', () => {
+    it('does nothing for the sentinel', () => {
       const elements = ['linked', 'list', 'elements'];
       const tickets = [];
       elements.forEach(el => tickets.push(dll.insertHead(el)));

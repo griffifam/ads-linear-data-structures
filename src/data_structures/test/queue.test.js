@@ -13,12 +13,12 @@ dataStructures.forEach(ds => {
       queue = new ds();
     });
 
-    xit('starts empty', () => {
+    it('starts empty', () => {
       expect(queue.count()).toBe(0);
     });
 
-    xdescribe('enqueue', () => {
-      xit('increases the count by 1', () => {
+    describe('enqueue', () => {
+      it('increases the count by 1', () => {
         queue.enqueue('test');
         expect(queue.count()).toBe(1);
 
@@ -29,8 +29,8 @@ dataStructures.forEach(ds => {
       });
     })
 
-    xdescribe('dequeue', () => {
-      xit('yields elements in insertion order', () => {
+    describe('dequeue', () => {
+      it('yields elements in insertion order', () => {
         const elements = ['various', 'interesting', 'strings'];
         elements.forEach(el => queue.enqueue(el));
 
@@ -40,7 +40,7 @@ dataStructures.forEach(ds => {
         })
       });
 
-      xit('decreases count by 1', () => {
+      it('decreases count by 1', () => {
         const elements = ['various', 'interesting', 'strings'];
         elements.forEach(el => queue.enqueue(el));
 
@@ -53,12 +53,12 @@ dataStructures.forEach(ds => {
         })
       });
 
-      xit('yields undefined when run on an empty queue', () => {
+      it('yields undefined when run on an empty queue', () => {
         const result = queue.dequeue();
         expect(result).toBe(undefined);
       });
 
-      xit('yields undefined when all elements have been dequeued', () => {
+      it('yields undefined when all elements have been dequeued', () => {
         const count = 10;
         for (let i = 0; i < count; i += 1) {
           queue.enqueue(i * i);
@@ -89,7 +89,7 @@ dataStructures.forEach(ds => {
       });
     });
 
-    xdescribe('forEach', () => {
+    describe('forEach', () => {
       // Hope to match the JavaScript Array forEach interface:
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
       // Note that we ignore the thisArg
@@ -103,7 +103,7 @@ dataStructures.forEach(ds => {
         expect(cb.mock.calls.length).toBe(0);
       });
 
-      xit('provides element, index and the queue itself as cb args', () => {
+      it('provides element, index and the queue itself as cb args', () => {
         const elements = ['various', 'interesting', 'strings'];
         elements.forEach(el => queue.enqueue(el));
 
@@ -120,8 +120,8 @@ dataStructures.forEach(ds => {
       });
     });
 
-    xdescribe('cancel', () => {
-      xit('reduces the count by one', () => {
+    describe('cancel', () => {
+      it('reduces the count by one', () => {
         const elements = ['various', 'interesting', 'strings'];
         const tickets = [];
         elements.forEach(el => tickets.push(queue.enqueue(el)));
@@ -134,7 +134,7 @@ dataStructures.forEach(ds => {
         });
       });
 
-      xit('skips cancelled elements when dequeueing', () => {
+      it('skips cancelled elements when dequeueing', () => {
         const elements = ['various', 'cancelled', 'strings'];
         const tickets = [];
         elements.forEach(el => tickets.push(queue.enqueue(el)));
@@ -149,7 +149,7 @@ dataStructures.forEach(ds => {
         expect(queue.count()).toBe(0);
       });
 
-      xit('skips cancelled elements during iteration', () => {
+      it('skips cancelled elements during iteration', () => {
         const elements = ['various', 'cancelled', 'strings'];
         const tickets = [];
         elements.forEach(el => tickets.push(queue.enqueue(el)));
@@ -163,7 +163,7 @@ dataStructures.forEach(ds => {
         expect(cb.mock.calls[1][0]).toBe('strings');
       });
 
-      xit('does nothing for an invalid ticket', () => {
+      it('does nothing for an invalid ticket', () => {
         const elements = ['various', 'interesting', 'strings'];
         elements.forEach(el => queue.enqueue(el));
 
@@ -172,7 +172,7 @@ dataStructures.forEach(ds => {
         expect(queue.count()).toBe(elements.length);
       });
 
-      xit('does nothing when cancelling an element that has already been dequeued', () => {
+      it('does nothing when cancelling an element that has already been dequeued', () => {
         const elements = ['various', 'cancelled', 'strings'];
         const tickets = [];
         elements.forEach(el => tickets.push(queue.enqueue(el)));
